@@ -43,7 +43,7 @@ export function Header() {
       >
         <a
           href="#top"
-          className="group inline-flex items-center gap-2 rounded-lg px-1 py-1 text-sm font-semibold tracking-[-0.03em] text-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
+          className="group inline-flex min-h-11 items-center gap-2 rounded-lg px-1 py-1 text-sm font-semibold tracking-[-0.03em] text-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
           aria-label={`${profile.name}, back to top`}
         >
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-lime text-[0.7rem] font-black tracking-[-0.08em] text-ink transition-transform duration-300 group-hover:-rotate-6">
@@ -57,7 +57,7 @@ export function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="rounded-lg px-3 py-2 text-sm text-muted transition-colors hover:text-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
+              className="inline-flex min-h-11 items-center rounded-lg px-3 py-2 text-sm text-muted transition-colors hover:text-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
             >
               {item.label}
             </a>
@@ -66,14 +66,14 @@ export function Header() {
 
         <a
           href="#contact"
-          className="hidden items-center gap-1.5 rounded-lg border border-lime/25 bg-lime px-3.5 py-2 text-sm font-semibold text-ink transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#cfdbb7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime sm:inline-flex"
+          className="hidden min-h-11 items-center gap-1.5 rounded-lg border border-lime/25 bg-lime px-3.5 py-2 text-sm font-semibold text-ink transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#cfdbb7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime sm:inline-flex"
         >
           Let’s talk <ArrowUpRight size={15} strokeWidth={2.2} />
         </a>
 
         <button
           type="button"
-          className="grid h-10 w-10 place-items-center rounded-lg border border-white/10 bg-white/[0.04] text-mist transition-colors hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime lg:hidden"
+          className="grid h-11 w-11 place-items-center rounded-lg border border-white/10 bg-white/[0.04] text-mist transition-colors hover:bg-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime lg:hidden"
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"

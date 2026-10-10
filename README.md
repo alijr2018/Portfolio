@@ -1,6 +1,6 @@
-# Rami Abdelali — Personal Portfolio
+# Abdelali Rami — Backend & Systems Portfolio
 
-A polished, responsive React + TypeScript + Tailwind CSS portfolio for **Rami Abdelali**: a full-stack developer in training with a mechanical-design background. Its CV, 1337 transcript (issued 09 October 2026), supplied GitHub profile, and current ft_transcendence work inform the content.
+A responsive React + TypeScript + Tailwind CSS portfolio for **Abdelali Rami**, a backend and systems engineering student at 1337 (42 Network). It reflects supplied CV and transcript information, verified public work, and current ft_transcendence learning.
 
 ## Stack
 
@@ -40,9 +40,9 @@ Key editable fields include:
 - Bio, skills, projects, and timeline entries
 - Public `sourceUrl` values for projects
 
-The contact section is intentionally simple: it copies Rami’s email address to the visitor’s clipboard and does not collect or store visitor data.
+The contact section offers a direct `mailto:` link and a copy-email action. It does not collect or store visitor data.
 
-> **Privacy note:** The public site intentionally uses Rami’s city rather than his street address and does not show the date of birth, phone number, or full academic transcript. Review the email in `profile.ts` before publishing.
+> **Privacy note:** The public site intentionally uses Abdelali’s city rather than his street address and does not show the date of birth, phone number, or full academic transcript. Review the email in `profile.ts` before publishing.
 
 ## Project structure
 

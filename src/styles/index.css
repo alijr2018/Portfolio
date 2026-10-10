@@ -38,6 +38,14 @@ textarea {
   font: inherit;
 }
 
+p {
+  overflow-wrap: anywhere;
+}
+
+main :where(.grid, .flex) > * {
+  min-width: 0;
+}
+
 ::selection {
   background: #b9c99b;
   color: #172019;

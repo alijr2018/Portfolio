@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowDown, ArrowUpRight, Check, Copy, Github, Linkedin, Mail, MapPin } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Check, Copy, Github, Mail, MapPin } from 'lucide-react'
 import { Header } from './components/Header'
 import { Reveal } from './components/Reveal'
 import { SectionHeading } from './components/SectionHeading'
@@ -35,7 +35,6 @@ const accentStyles = {
 
 function SocialIcon({ platform, size = 18 }: { platform: SocialPlatform; size?: number }) {
   if (platform === 'github') return <Github size={size} strokeWidth={1.8} />
-  if (platform === 'linkedin') return <Linkedin size={size} strokeWidth={1.8} />
   return <Mail size={size} strokeWidth={1.8} />
 }
 
@@ -81,7 +80,7 @@ function App() {
 
   useEffect(() => {
     const title = `${profile.name} — ${profile.role}`
-    const description = `Portfolio of ${profile.name}, ${profile.role.toLowerCase()} based in ${profile.location}.`
+    const description = `${profile.role}. ${profile.roleSummary} Open to internships.`
 
     document.title = title
     document.querySelector('meta[name="description"]')?.setAttribute('content', description)
@@ -90,10 +89,10 @@ function App() {
   }, [])
 
   return (
-    <div className="min-h-screen overflow-x-clip bg-ink text-mist selection:bg-lime selection:text-ink">
+    <div className="min-h-screen bg-ink text-mist selection:bg-lime selection:text-ink">
       <a
         href="#main-content"
-        className="fixed left-4 top-3 z-[70] -translate-y-20 rounded-lg bg-lime px-4 py-2 text-sm font-bold text-ink transition-transform focus:translate-y-0 focus:outline-none"
+        className="fixed left-4 top-3 z-[70] inline-flex min-h-11 -translate-y-20 items-center rounded-lg bg-lime px-4 py-2 text-sm font-bold text-ink transition-transform focus:translate-y-0 focus:outline-none"
       >
         Skip to content
       </a>
@@ -102,11 +101,11 @@ function App() {
       <main id="main-content">
         <section id="top" className="relative isolate overflow-hidden px-5 pb-16 pt-32 sm:px-8 sm:pb-20 sm:pt-40 lg:px-10 lg:pt-44">
           <div className="hero-grid pointer-events-none absolute inset-0 -z-10 opacity-30" aria-hidden="true" />
-          <div className="pointer-events-none absolute left-[12%] top-[-16rem] -z-10 h-[32rem] w-[32rem] rounded-full bg-lime/[0.08] blur-[100px]" aria-hidden="true" />
-          <div className="pointer-events-none absolute right-[-12rem] top-32 -z-10 h-[25rem] w-[25rem] rounded-full bg-violet/[0.10] blur-[100px]" aria-hidden="true" />
+          <div className="pointer-events-none absolute left-[12%] top-[-16rem] -z-10 hidden h-[32rem] w-[32rem] rounded-full bg-lime/[0.08] blur-[60px] sm:block" aria-hidden="true" />
+          <div className="pointer-events-none absolute right-[-12rem] top-32 -z-10 hidden h-[25rem] w-[25rem] rounded-full bg-violet/[0.10] blur-[60px] sm:block" aria-hidden="true" />
 
-          <div className="mx-auto max-w-7xl">
-            <Reveal className="max-w-3xl">
+          <div className="mx-auto max-w-7xl min-w-0">
+            <Reveal className="min-w-0 max-w-3xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5 text-[0.66rem] font-semibold uppercase tracking-[0.15em] text-mist/85">
                 <span className="relative flex h-2 w-2" aria-hidden="true">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-lime opacity-45 motion-reduce:hidden" />
@@ -116,8 +115,10 @@ function App() {
               </div>
 
               <p className="mt-8 text-sm font-medium text-muted">Hello, I’m {profile.name}.</p>
-              <h1 className="mt-3 font-display text-[4.2rem] leading-[0.86] tracking-[-0.07em] text-mist sm:text-8xl lg:text-[6.8rem]">
-                {profile.headline.lead} <em className="font-normal text-lime">{profile.headline.emphasis}</em> {profile.headline.ending}
+              <p className="mt-2 text-sm font-semibold text-mist/85">{profile.role} <span className="font-normal text-muted">· {profile.roleSummary}</span></p>
+              <h1 className="mt-3 break-words font-display text-[clamp(2.6rem,12.5vw,4.2rem)] leading-[0.9] tracking-[-0.065em] text-mist sm:text-8xl lg:text-[6.8rem]">
+                {profile.headline.lead} <em className="font-normal text-lime">{profile.headline.emphasis}</em>
+                {profile.headline.ending && ` ${profile.headline.ending}`}
               </h1>
               <p className="mt-7 max-w-xl text-base leading-7 text-muted sm:text-lg sm:leading-8">{profile.intro}</p>
 
@@ -147,7 +148,7 @@ function App() {
                           type="button"
                           onClick={() => void handleCopyEmail('hero')}
                           aria-label={copied ? 'Email copied' : 'Copy email address'}
-                          className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-muted transition-colors hover:border-lime/45 hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
+                          className="grid h-11 w-11 place-items-center rounded-full border border-white/10 text-muted transition-colors hover:border-lime/45 hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
                         >
                           {copied ? <Check size={16} className="text-lime" /> : <Copy size={16} />}
                         </button>
@@ -171,7 +172,7 @@ function App() {
                       rel={social.href.startsWith('http') ? 'noreferrer' : undefined}
                       aria-label={social.label}
                       title={social.note}
-                      className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-muted transition-colors hover:border-lime/45 hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
+                      className="grid h-11 w-11 place-items-center rounded-full border border-white/10 text-muted transition-colors hover:border-lime/45 hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
                     >
                       <SocialIcon platform={social.platform} size={16} />
                     </a>
@@ -184,7 +185,7 @@ function App() {
 
           <a
             href="#about"
-            className="mx-auto mt-14 hidden w-fit items-center gap-2 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-white/40 transition-colors hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime sm:flex"
+            className="mx-auto mt-14 hidden min-h-11 w-fit items-center gap-2 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-white/40 transition-colors hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime sm:flex"
           >
             Explore <ArrowDown size={14} />
           </a>
@@ -220,9 +221,15 @@ function App() {
               <SectionHeading
                 number="02"
                 eyebrow="Skills"
-                title="A focused toolkit."
-                description="Software, web development, and mechanical design — the tools I use to keep learning and building."
+                title="A focused systems toolkit."
+                description="Languages, operating-system foundations, and tools used to build reliable backend software."
               />
+            </Reveal>
+            <Reveal delay={0.04}>
+              <p className="mt-5 inline-flex max-w-full flex-wrap items-center gap-2 rounded-xl border border-white/10 bg-white/[0.025] px-3.5 py-3 text-sm text-muted">
+                <span className="font-semibold text-mist">Currently learning:</span>
+                {profile.learning.join(' · ')}
+              </p>
             </Reveal>
 
             <div className="mt-10 grid gap-3 md:grid-cols-3">
@@ -255,16 +262,16 @@ function App() {
                 number="03"
                 eyebrow="Selected work"
                 title="A few things I have built."
-                description="Current work and selected 1337 projects. Public source code is linked where it is available."
+                description="Selected systems projects from 1337. Each card shows the result, core stack, and a source link when it is public."
               />
             </Reveal>
 
-            <div className="mt-10 grid gap-3 lg:grid-cols-3">
+            <div className="mt-10 grid min-w-0 gap-3 md:grid-cols-2 xl:grid-cols-3">
               {projects.map((project, index) => {
                 const accent = accentStyles[project.accent]
                 return (
                   <Reveal key={project.id} delay={index * 0.06}>
-                    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#222d24] transition-all hover:-translate-y-1 hover:border-white/20 hover:shadow-soft">
+                    <article className="group flex min-w-0 h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#222d24] transition-all hover:-translate-y-1 hover:border-white/20 hover:shadow-soft">
                       <div className={`relative overflow-hidden border-b border-white/10 bg-gradient-to-br ${accent.surface} p-5`}>
                         <div className="absolute -right-8 -top-10 h-32 w-32 rounded-full border border-white/10" />
                         <div className="relative flex items-start justify-between">
@@ -276,6 +283,11 @@ function App() {
                       <div className="flex flex-1 flex-col p-5 sm:p-6">
                         <h3 className="font-display text-3xl tracking-[-0.04em] text-mist">{project.title}</h3>
                         <p className="mt-3 text-sm leading-6 text-muted">{project.description}</p>
+                        {project.result && (
+                          <p className="mt-3 border-l border-lime/45 pl-3 text-sm leading-6 text-mist/85">
+                            <span className="font-semibold text-lime">Result:</span> {project.result}
+                          </p>
+                        )}
                         <div className="mt-5 flex flex-wrap gap-2">
                           {project.technologies.map((technology) => (
                             <span key={technology} className="rounded-full bg-white/[0.045] px-2.5 py-1 text-xs text-mist/80">{technology}</span>
@@ -287,12 +299,12 @@ function App() {
                               href={project.sourceUrl}
                               target="_blank"
                               rel="noreferrer"
-                              className="inline-flex items-center gap-2 text-sm font-semibold text-mist transition-colors hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
+                              className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-mist transition-colors hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
                             >
                               <Github size={16} /> View source <ArrowUpRight size={15} />
                             </a>
                           ) : (
-                            <span className="text-sm text-white/40">Private while in progress</span>
+                            <span className="text-sm text-white/40">Source not public yet</span>
                           )}
                         </div>
                       </div>
@@ -343,19 +355,33 @@ function App() {
             <Reveal className="max-w-2xl">
               <p className="text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-lime">05 — Contact</p>
               <h2 className="mt-4 font-display text-5xl leading-[0.95] tracking-[-0.055em] text-mist sm:text-6xl">Let’s connect.</h2>
-              <p className="mt-5 max-w-md text-base leading-7 text-muted">For opportunities or collaborations, copy my email address and get in touch.</p>
-              <button
-                type="button"
-                onClick={() => void handleCopyEmail('contact')}
-                className="mt-8 inline-flex flex-wrap items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-mist transition-colors hover:border-lime/40 hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
-                aria-label={copiedTarget === 'contact' ? 'Email copied' : 'Copy email address'}
-              >
-                {copiedTarget === 'contact' ? <Check size={17} className="text-lime" /> : <Copy size={17} className="text-lime" />}
-                <span>{profile.email}</span>
-                <span className="rounded-full border border-white/10 bg-[#172019]/60 px-2 py-0.5 text-[0.64rem] font-semibold text-muted">
-                  {copiedTarget === 'contact' ? 'Copied!' : 'Copy email'}
-                </span>
-              </button>
+              <p className="mt-5 max-w-md text-base leading-7 text-muted">Open to backend and software-engineering internships. Reach out by email or find my work on GitHub.</p>
+              <p className="mt-4 text-sm font-semibold text-mist">{profile.email}</p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-lime px-4 py-3 text-sm font-bold text-ink transition-transform hover:-translate-y-0.5 hover:bg-[#cfdbb7] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
+                >
+                  <Mail size={17} /> Email me <ArrowUpRight size={15} />
+                </a>
+                <button
+                  type="button"
+                  onClick={() => void handleCopyEmail('contact')}
+                  className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-mist transition-colors hover:border-lime/40 hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
+                  aria-label={copiedTarget === 'contact' ? 'Email copied' : 'Copy email address'}
+                >
+                  {copiedTarget === 'contact' ? <Check size={17} className="text-lime" /> : <Copy size={17} className="text-lime" />}
+                  <span>{copiedTarget === 'contact' ? 'Copied!' : 'Copy email'}</span>
+                </button>
+                <a
+                  href={profile.githubUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-mist transition-colors hover:border-lime/40 hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
+                >
+                  <Github size={17} /> GitHub <ArrowUpRight size={15} />
+                </a>
+              </div>
               <p className="sr-only" role="status" aria-live="polite">
                 {copiedTarget === 'contact' ? 'Email address copied to clipboard.' : ''}
               </p>
@@ -366,18 +392,27 @@ function App() {
 
       <footer className="border-t border-white/10 px-5 py-8 sm:px-8 lg:px-10">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <a href="#top" className="inline-flex items-center gap-2 text-sm font-semibold text-mist transition-colors hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime">
+          <a href="#top" className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-mist transition-colors hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime">
             <span className="grid h-8 w-8 place-items-center rounded-lg bg-lime text-[0.68rem] font-black tracking-[-0.08em] text-ink">{profile.initials}</span>
             {profile.name}
           </a>
-          <div className="flex flex-wrap gap-x-4 gap-y-2">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <a
+              href={profile.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              className="grid h-11 w-11 place-items-center rounded-full border border-white/10 text-muted transition-colors hover:border-lime/40 hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
+            >
+              <Github size={17} />
+            </a>
             {navigation.map((item) => (
-              <a key={item.href} href={item.href} className="text-sm text-muted transition-colors hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime">
+              <a key={item.href} href={item.href} className="inline-flex min-h-11 items-center text-sm text-muted transition-colors hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime">
                 {item.label}
               </a>
             ))}
           </div>
-          <p className="text-sm text-white/40">© {new Date().getFullYear()} Rami Abdelali</p>
+          <p className="text-sm text-white/40">© {new Date().getFullYear()} {profile.name}</p>
         </div>
       </footer>
     </div>
