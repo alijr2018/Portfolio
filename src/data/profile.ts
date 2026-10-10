@@ -57,7 +57,7 @@ export const profile = {
     {
       command: 'cat status',
       output:
-        'school    1337 (42 Network), Khouribga\ncore      Common Core, 87% complete\nprojects  27 validated (projects, modules, exams)\nfocus     backend · C/C++ · Unix · networking\nspecialty Full Stack · Back-End',
+        'school    1337 (42 Network), Khouribga\ncore      Common Core, 87% complete\nprojects  27 validated (projects, modules, exams)\nfocus     backend · C/C++ · Unix · networking\nFull Stack specialty in Back-End',
     },
   ],
   heroStats: [
