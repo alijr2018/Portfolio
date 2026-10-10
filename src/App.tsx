@@ -55,7 +55,7 @@ function App() {
 
   useEffect(() => {
     const title = `${profile.name} — ${profile.role}`
-    const description = `${profile.role}. ${profile.roleSummary} Open to internships.`
+    const description = `${profile.role}. ${profile.roleSummary} ${profile.availability}.`
 
     document.title = title
     document.querySelector('meta[name="description"]')?.setAttribute('content', description)
@@ -121,13 +121,13 @@ function App() {
                     <span className="h-2.5 w-2.5 rounded-full bg-[#38516c]" />
                     <span className="ml-2 font-mono text-[0.68rem] text-muted">profile.sh</span>
                   </div>
-                  <div className="space-y-4 p-5 font-mono text-[0.78rem] leading-6 sm:p-6 sm:text-sm">
+                  <div className="space-y-2.5 p-5 font-mono text-[0.78rem] leading-6 sm:p-6 sm:text-sm">
                     {profile.terminal.map((item) => (
                       <div key={item.command} className="min-w-0">
                         <p className="break-words text-mist">
                           <span className="text-ice">$</span> {item.command}
                         </p>
-                        <p className="break-words pl-4 text-muted">{item.output}</p>
+                        <p className="break-words whitespace-pre-wrap pl-4 text-muted">{item.output}</p>
                       </div>
                     ))}
                   </div>
@@ -322,7 +322,7 @@ function App() {
               <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-ice">05 — Contact</p>
               <h2 className="mt-4 font-display text-5xl leading-[0.94] tracking-[-0.04em] text-mist sm:text-6xl">Let’s talk.</h2>
               <p className="mt-5 max-w-xl text-base leading-7 text-muted sm:text-lg">
-                I’m looking for backend, software, or systems-engineering internships. Use the contact actions below to get in touch.
+                I’m open to backend, software, or systems-engineering internships and jobs. Use the contact actions below to get in touch.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <button
