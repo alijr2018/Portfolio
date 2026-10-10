@@ -52,6 +52,16 @@ export const profile = {
   bio:
     'I am progressing through the 1337 Common Core while building systems projects in C and C++. My industrial background gives me a practical approach to software: understand the constraints, keep the design clear, and test the details.',
   learning: ['React', 'Next.js'],
+  terminal: [
+    { command: 'whoami', output: 'Abdelali Rami' },
+    { command: 'cat focus', output: 'backend · C/C++ · Unix · networking' },
+    { command: 'cat availability', output: 'Open to internships' },
+  ],
+  heroStats: [
+    { value: '87%', label: 'of the 1337 Common Core completed' },
+    { value: 'C / C++', label: 'systems and backend study focus' },
+    { value: '3', label: 'file descriptor leaks fixed in ft_irc' },
+  ],
   social: [
     {
       label: 'GitHub',
@@ -204,8 +214,8 @@ export const timeline: TimelineItem[] = [
 
 export const navigation = [
   { label: 'About', href: '#about' },
+  { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
-  { label: 'Work', href: '#work' },
   { label: 'Journey', href: '#journey' },
   { label: 'Contact', href: '#contact' },
 ]
