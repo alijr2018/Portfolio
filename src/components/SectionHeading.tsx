@@ -17,20 +17,13 @@ export function SectionHeading({
 
   return (
     <div className={centered ? 'mx-auto max-w-3xl text-center' : 'max-w-3xl'}>
-      <div
-        className={`mb-5 flex items-center gap-3 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-lime ${
-          centered ? 'justify-center' : ''
-        }`}
-      >
-        <span className="inline-flex h-6 min-w-6 items-center justify-center rounded-full border border-lime/30 bg-lime/10 px-1.5 text-[0.6rem]">
-          {number}
-        </span>
-        {eyebrow}
-      </div>
-      <h2 className="font-display text-4xl leading-[0.98] tracking-[-0.045em] text-mist sm:text-5xl lg:text-6xl">
+      <p className={`font-mono text-xs font-medium uppercase tracking-[0.14em] text-ice ${centered ? 'text-center' : ''}`}>
+        {number} — {eyebrow}
+      </p>
+      <h2 className="mt-4 font-display text-5xl leading-[0.96] tracking-[-0.035em] text-mist sm:text-6xl">
         {title}
       </h2>
-      <p className="mt-5 max-w-2xl text-base leading-7 text-muted sm:text-lg">{description}</p>
+      <p className={`mt-5 max-w-2xl text-base leading-7 text-muted sm:text-lg ${centered ? 'mx-auto' : ''}`}>{description}</p>
     </div>
   )
 }

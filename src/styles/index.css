@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  color: #edf0e8;
-  background: #172019;
+  color: #edf6ff;
+  background: #07111f;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -12,13 +12,17 @@
 
 html {
   scroll-behavior: smooth;
-  background: #172019;
+  scroll-padding-top: 88px;
+  background: #07111f;
 }
 
 body {
   min-width: 320px;
   margin: 0;
-  background: #172019;
+  overflow-x: hidden;
+  background: #07111f;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
@@ -38,7 +42,12 @@ textarea {
   font: inherit;
 }
 
-p {
+p,
+h1,
+h2,
+h3,
+li,
+a {
   overflow-wrap: anywhere;
 }
 
@@ -47,17 +56,24 @@ main :where(.grid, .flex) > * {
 }
 
 ::selection {
-  background: #b9c99b;
-  color: #172019;
+  background: #93d7ff;
+  color: #07111f;
 }
 
 .hero-grid {
   background-image:
-    linear-gradient(rgba(237, 240, 232, 0.026) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(237, 240, 232, 0.026) 1px, transparent 1px);
+    linear-gradient(rgba(197, 225, 255, 0.034) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(197, 225, 255, 0.034) 1px, transparent 1px);
   background-position: center top;
-  background-size: 88px 88px;
-  mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.45) 48%, transparent 100%);
+  background-size: 76px 76px;
+  mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.52) 48%, transparent 100%);
+}
+
+@media (max-width: 639px) {
+  .hero-grid {
+    background-size: 54px 54px;
+    opacity: 0.48;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
