@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowRight, ArrowUpRight, Check, Copy, Github, Mail } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Check, Copy, Github } from 'lucide-react'
 import { Header } from './components/Header'
 import { Reveal } from './components/Reveal'
 import { SectionHeading } from './components/SectionHeading'
@@ -326,12 +326,6 @@ function App() {
               </p>
               <p className="mt-6 break-all font-mono text-sm font-medium text-mist sm:text-base">{profile.email}</p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <a
-                  href={`mailto:${profile.email}`}
-                  className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-ice px-4 py-3 text-sm font-bold text-ink transition-transform hover:-translate-y-0.5 hover:bg-[#b9e5ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ice"
-                >
-                  <Mail size={17} /> Email me <ArrowUpRight size={15} />
-                </a>
                 <button
                   type="button"
                   onClick={() => void handleCopyEmail()}
