@@ -59,7 +59,7 @@ export const profile = {
       label: 'Email',
       platform: 'email' as SocialPlatform,
       href: 'mailto:alirami120@hotmail.fr',
-      note: 'Email Rami directly',
+      note: 'Copy Rami’s email address',
     },
   ],
   highlights: [

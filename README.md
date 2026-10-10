@@ -40,7 +40,7 @@ Key editable fields include:
 - Bio, skills, projects, and timeline entries
 - Public `sourceUrl` values for projects
 
-The contact section is intentionally simple: it provides a direct `mailto:` link to Rami’s email address and does not collect or store visitor data.
+The contact section is intentionally simple: it copies Rami’s email address to the visitor’s clipboard and does not collect or store visitor data.
 
 > **Privacy note:** The public site intentionally uses Rami’s city rather than his street address and does not show the date of birth, phone number, or full academic transcript. Review the email in `profile.ts` before publishing.
 
