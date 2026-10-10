@@ -40,7 +40,7 @@ Key editable fields include:
 - Bio, skills, projects, and timeline entries
 - Public `sourceUrl` values for projects
 
-The contact form uses a `mailto:` flow, so it works without a backend: submitting opens the visitor's configured email application with the fields prefilled.
+The contact section is intentionally simple: it provides a direct `mailto:` link to Rami’s email address and does not collect or store visitor data.
 
 > **Privacy note:** The public site intentionally uses Rami’s city rather than his street address and does not show the date of birth, phone number, or full academic transcript. Review the email in `profile.ts` before publishing.
 
@@ -48,7 +48,7 @@ The contact form uses a `mailto:` flow, so it works without a backend: submittin
 
 ```text
 src/
-├── components/          # Reusable header, reveal, section, and form UI
+├── components/          # Reusable header, reveal, and section UI
 ├── data/profile.ts      # Central editable portfolio content
 ├── styles/index.css     # Tailwind entry point + global accessibility styles
 ├── App.tsx              # Page composition
@@ -83,7 +83,7 @@ This repository uses GitHub Pages' branch deployment. Build the Pages version wi
 npm run build:pages
 ```
 
-That command creates the static site in `docs/` with the correct `/Portfolio/` asset path. Configure GitHub Pages to serve the `/docs` folder from the `main` branch.
+That command creates the static site in `docs/` with relative asset paths. Configure GitHub Pages to serve the `/docs` folder from the `main` branch.
 
 For another static host, publish the contents of `dist` after running `npm run build`.
 
@@ -92,5 +92,5 @@ For another static host, publish the contents of `dist` after running `npm run b
 - Responsive navigation with keyboard-accessible mobile menu
 - Semantic sections, visible focus states, a skip link, labels, and strong contrast
 - Respect for reduced-motion preferences
-- Functional anchor navigation, public source links, email contact form, and copy-email action
+- Functional anchor navigation, public source links, and direct email contact
 - Production build and lint scripts

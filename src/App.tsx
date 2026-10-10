@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { ArrowDown, ArrowUpRight, Github, Linkedin, Mail, MapPin } from 'lucide-react'
-import { ContactForm } from './components/ContactForm'
 import { Header } from './components/Header'
 import { Reveal } from './components/Reveal'
 import { SectionHeading } from './components/SectionHeading'
@@ -274,35 +273,17 @@ function App() {
         </section>
 
         <section id="contact" className="scroll-mt-24 px-5 pb-20 sm:px-8 sm:pb-24 lg:px-10">
-          <div className="mx-auto grid max-w-7xl gap-10 rounded-[2rem] border border-white/10 bg-[#222d24] p-6 shadow-soft sm:p-10 lg:grid-cols-[.78fr_1.22fr] lg:gap-16 lg:p-12">
-            <Reveal>
+          <div className="mx-auto max-w-7xl rounded-[2rem] border border-white/10 bg-[#222d24] p-6 shadow-soft sm:p-10 lg:p-12">
+            <Reveal className="max-w-2xl">
               <p className="text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-lime">05 — Contact</p>
               <h2 className="mt-4 font-display text-5xl leading-[0.95] tracking-[-0.055em] text-mist sm:text-6xl">Let’s connect.</h2>
-              <p className="mt-5 max-w-md text-base leading-7 text-muted">Open to opportunities, collaborations, and practical problems worth solving.</p>
+              <p className="mt-5 max-w-md text-base leading-7 text-muted">For opportunities or collaborations, feel free to send me an email.</p>
               <a
                 href={`mailto:${profile.email}`}
-                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-mist transition-colors hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
+                className="mt-8 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-mist transition-colors hover:border-lime/40 hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
               >
                 <Mail size={17} className="text-lime" /> {profile.email} <ArrowUpRight size={15} />
               </a>
-              <div className="mt-6 flex gap-2">
-                {profile.social.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target={social.href.startsWith('http') ? '_blank' : undefined}
-                    rel={social.href.startsWith('http') ? 'noreferrer' : undefined}
-                    title={social.note}
-                    aria-label={social.label}
-                    className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-muted transition-colors hover:border-lime/40 hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
-                  >
-                    <SocialIcon platform={social.platform} size={16} />
-                  </a>
-                ))}
-              </div>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <ContactForm />
             </Reveal>
           </div>
         </section>
