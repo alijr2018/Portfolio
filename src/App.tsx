@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { ArrowDown, ArrowUpRight, Github, Linkedin, Mail, MapPin } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { ArrowDown, ArrowUpRight, Check, Copy, Github, Linkedin, Mail, MapPin } from 'lucide-react'
 import { Header } from './components/Header'
 import { Reveal } from './components/Reveal'
 import { SectionHeading } from './components/SectionHeading'
@@ -39,7 +39,46 @@ function SocialIcon({ platform, size = 18 }: { platform: SocialPlatform; size?: 
   return <Mail size={size} strokeWidth={1.8} />
 }
 
+type CopyTarget = 'hero' | 'contact'
+
+async function copyToClipboard(value: string) {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(value)
+      return
+    } catch {
+      // Some embedded browsers deny the Clipboard API; fall back below.
+    }
+  }
+
+  const input = document.createElement('textarea')
+  input.value = value
+  input.setAttribute('readonly', '')
+  input.style.position = 'fixed'
+  input.style.opacity = '0'
+  document.body.appendChild(input)
+  input.select()
+  const copied = document.execCommand('copy')
+  document.body.removeChild(input)
+
+  if (!copied) throw new Error('Clipboard copy failed')
+}
+
 function App() {
+  const [copiedTarget, setCopiedTarget] = useState<CopyTarget | null>(null)
+
+  const handleCopyEmail = async (target: CopyTarget) => {
+    try {
+      await copyToClipboard(profile.email)
+      setCopiedTarget(target)
+      window.setTimeout(() => {
+        setCopiedTarget((current) => (current === target ? null : current))
+      }, 2200)
+    } catch {
+      setCopiedTarget(null)
+    }
+  }
+
   useEffect(() => {
     const title = `${profile.name} — ${profile.role}`
     const description = `Portfolio of ${profile.name}, ${profile.role.toLowerCase()} based in ${profile.location}.`
@@ -98,19 +137,46 @@ function App() {
               </div>
 
               <div className="mt-9 flex items-center gap-3">
-                {profile.social.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target={social.href.startsWith('http') ? '_blank' : undefined}
-                    rel={social.href.startsWith('http') ? 'noreferrer' : undefined}
-                    aria-label={social.label}
-                    title={social.note}
-                    className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-muted transition-colors hover:border-lime/45 hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
-                  >
-                    <SocialIcon platform={social.platform} size={16} />
-                  </a>
-                ))}
+                {profile.social.map((social) => {
+                  if (social.platform === 'email') {
+                    const copied = copiedTarget === 'hero'
+
+                    return (
+                      <div key={social.label} className="group relative">
+                        <button
+                          type="button"
+                          onClick={() => void handleCopyEmail('hero')}
+                          aria-label={copied ? 'Email copied' : 'Copy email address'}
+                          className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-muted transition-colors hover:border-lime/45 hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
+                        >
+                          {copied ? <Check size={16} className="text-lime" /> : <Copy size={16} />}
+                        </button>
+                        <span
+                          aria-live="polite"
+                          className={`pointer-events-none absolute left-1/2 top-[calc(100%+0.5rem)] z-10 -translate-x-1/2 whitespace-nowrap rounded-md border border-white/10 bg-[#172019]/95 px-2 py-1 text-[0.64rem] font-medium text-mist shadow-soft transition-opacity ${
+                            copied ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 group-focus-within:opacity-100'
+                          }`}
+                        >
+                          {copied ? 'Copied!' : 'Copy email'}
+                        </span>
+                      </div>
+                    )
+                  }
+
+                  return (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target={social.href.startsWith('http') ? '_blank' : undefined}
+                      rel={social.href.startsWith('http') ? 'noreferrer' : undefined}
+                      aria-label={social.label}
+                      title={social.note}
+                      className="grid h-9 w-9 place-items-center rounded-full border border-white/10 text-muted transition-colors hover:border-lime/45 hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
+                    >
+                      <SocialIcon platform={social.platform} size={16} />
+                    </a>
+                  )
+                })}
               </div>
             </Reveal>
 
@@ -277,13 +343,22 @@ function App() {
             <Reveal className="max-w-2xl">
               <p className="text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-lime">05 — Contact</p>
               <h2 className="mt-4 font-display text-5xl leading-[0.95] tracking-[-0.055em] text-mist sm:text-6xl">Let’s connect.</h2>
-              <p className="mt-5 max-w-md text-base leading-7 text-muted">For opportunities or collaborations, feel free to send me an email.</p>
-              <a
-                href={`mailto:${profile.email}`}
-                className="mt-8 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-mist transition-colors hover:border-lime/40 hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
+              <p className="mt-5 max-w-md text-base leading-7 text-muted">For opportunities or collaborations, copy my email address and get in touch.</p>
+              <button
+                type="button"
+                onClick={() => void handleCopyEmail('contact')}
+                className="mt-8 inline-flex flex-wrap items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-semibold text-mist transition-colors hover:border-lime/40 hover:text-lime focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
+                aria-label={copiedTarget === 'contact' ? 'Email copied' : 'Copy email address'}
               >
-                <Mail size={17} className="text-lime" /> {profile.email} <ArrowUpRight size={15} />
-              </a>
+                {copiedTarget === 'contact' ? <Check size={17} className="text-lime" /> : <Copy size={17} className="text-lime" />}
+                <span>{profile.email}</span>
+                <span className="rounded-full border border-white/10 bg-[#172019]/60 px-2 py-0.5 text-[0.64rem] font-semibold text-muted">
+                  {copiedTarget === 'contact' ? 'Copied!' : 'Copy email'}
+                </span>
+              </button>
+              <p className="sr-only" role="status" aria-live="polite">
+                {copiedTarget === 'contact' ? 'Email address copied to clipboard.' : ''}
+              </p>
             </Reveal>
           </div>
         </section>
