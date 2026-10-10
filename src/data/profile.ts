@@ -39,7 +39,7 @@ export const profile = {
   role: 'Backend & Systems Engineering Student',
   roleSummary: 'C/C++, Linux, networking.',
   location: 'Khouribga, Morocco',
-  availability: 'Open to internships · Backend / Software Engineer',
+  availability: 'Open to internships and jobs',
   email: 'alirami120@hotmail.fr',
   githubUrl: 'https://github.com/alijr2018',
   headline: {
@@ -54,8 +54,11 @@ export const profile = {
   learning: ['React', 'Next.js'],
   terminal: [
     { command: 'whoami', output: 'Abdelali Rami' },
-    { command: 'cat focus', output: 'backend · C/C++ · Unix · networking' },
-    { command: 'cat availability', output: 'Open to internships' },
+    {
+      command: 'cat status',
+      output:
+        'school    1337 (42 Network), Khouribga\ncore      Common Core, 87% complete\nprojects  27 validated (projects, modules, exams)\nfocus     backend · C/C++ · Unix · networking',
+    },
   ],
   heroStats: [
     { value: '87%', label: 'of the 1337 Common Core completed' },
