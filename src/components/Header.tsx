@@ -32,8 +32,20 @@ export function Header() {
           className="group inline-flex min-h-11 items-center gap-2.5 rounded-lg text-sm font-semibold tracking-[-0.03em] text-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ice"
           aria-label={`${profile.name}, back to top`}
         >
-          <span className="grid h-[34px] w-[34px] place-items-center rounded-[9px] bg-ice font-mono text-xs font-bold tracking-[-0.08em] text-ink transition-transform duration-300 group-hover:-rotate-6">
-            {profile.initials}
+          <span className="grid h-[38px] w-[38px] place-items-center overflow-hidden rounded-xl border border-ice/25 bg-[#0a1a2c] shadow-[0_0_24px_rgba(147,215,255,0.16)] transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-105">
+            <svg viewBox="0 0 44 44" className="h-full w-full p-1.5" fill="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="header-symbol-gradient" x1="10" y1="8" x2="35" y2="37" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#c8edff" />
+                  <stop offset="0.52" stopColor="#93d7ff" />
+                  <stop offset="1" stopColor="#5caae0" />
+                </linearGradient>
+              </defs>
+              <path d="M15.5 12.5 10.5 22l5 9.5" stroke="url(#header-symbol-gradient)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M28.5 12.5 33.5 22l-5 9.5" stroke="url(#header-symbol-gradient)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="m25.5 10.5-7 23" stroke="url(#header-symbol-gradient)" strokeWidth="2.4" strokeLinecap="round" />
+              <circle cx="22" cy="22" r="2.7" fill="#edf6ff" />
+            </svg>
           </span>
           <span className="hidden sm:inline">{profile.name}</span>
         </a>
