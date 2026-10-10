@@ -322,9 +322,8 @@ function App() {
               <p className="font-mono text-xs font-medium uppercase tracking-[0.14em] text-ice">05 — Contact</p>
               <h2 className="mt-4 font-display text-5xl leading-[0.94] tracking-[-0.04em] text-mist sm:text-6xl">Let’s talk.</h2>
               <p className="mt-5 max-w-xl text-base leading-7 text-muted sm:text-lg">
-                I’m looking for backend, software, or systems-engineering internships. Email is the fastest way to reach me.
+                I’m looking for backend, software, or systems-engineering internships. Use the contact actions below to get in touch.
               </p>
-              <p className="mt-6 break-all font-mono text-sm font-medium text-mist sm:text-base">{profile.email}</p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <button
                   type="button"
